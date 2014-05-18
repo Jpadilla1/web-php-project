@@ -10,7 +10,8 @@ $GLOBALS['config'] = array(
 	),
 	'session' => array(
 		'session_name' => 'user'
-	)
+	),
+	'SITE_URL' => 'http://localhost/github/web-php-project/web-php-project/public/'
 );
 
 spl_autoload_register(function($class) {

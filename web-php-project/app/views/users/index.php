@@ -5,7 +5,7 @@
     <h1 class="text-center">University of Puerto Rico at Bayamon</h1>
     <h3 class="text-center">User Management</h3>
     <br>
-    <a href="/github/web-php-project/web-php-project/public/users/create" class="btn btn-default">Add User</a>
+    <a href="<?php echo Config::get('SITE_URL') ?>users/create" class="btn btn-default">Add User</a>
     <br><br>
     <?php 
       if (Session::exists('user_created')) {

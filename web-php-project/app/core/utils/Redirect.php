@@ -10,7 +10,7 @@ class Redirect {
 						break;
 				}
 			}
-			header("Location: " . $location);
+			header("Location: " . Config::get('SITE_URL')  . $location);
 			exit();
 		}
 	}

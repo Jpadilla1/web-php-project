@@ -60,7 +60,7 @@ class Users extends Controller {
 					die($e->getMessage());
 				}
 				Session::flash('user_created', "User was created successfully!");
-				Redirect::to($this->index());
+				Redirect::to('users/index');
 			} else {
 				$data['form_errors'] = $validation->errors(); 
 			}
