@@ -1,7 +1,7 @@
 Options -MultiViews
 RewriteEngine on
 
-RewriteBase /web-php-project-redone/public/
+RewriteBase /github/web-php-project/web-php-project/public/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
