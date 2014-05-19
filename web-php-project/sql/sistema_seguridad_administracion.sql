@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2014 at 06:42 PM
+-- Generation Time: May 19, 2014 at 06:40 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -95,7 +95,7 @@ INSERT INTO `sistema` (`sis_id_PK`, `sis_titulo`, `sis_descripcion`) VALUES
 CREATE TABLE IF NOT EXISTS `usuario` (
   `usu_id_PK` varchar(6) NOT NULL COMMENT 'Id del usuario ',
   `usu_username` varchar(15) NOT NULL COMMENT 'nombre de usuario ',
-  `usu_password` varchar(64) DEFAULT NULL COMMENT 'clave',
+  `usu_password` varchar(30) DEFAULT NULL COMMENT 'clave',
   `usu_nombre` varchar(40) NOT NULL COMMENT 'Nombre y apellidos reales ',
   `usu_last_login` date DEFAULT NULL COMMENT 'Fecha del último acceso ',
   `usu_intentos_fallidos` int(11) DEFAULT NULL COMMENT 'Cant. de intentos fallidos a la cuenta. ',
@@ -115,9 +115,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id_PK`, `usu_username`, `usu_password`, `usu_nombre`, `usu_last_login`, `usu_intentos_fallidos`, `usu_fecha_creacion`, `usu_fecha_expiracion`, `usu_fecha_cambio_password`, `usu_flag_cambio_password`, `usu_cantidad_dias_password`, `cat_id_FK`) VALUES
-('1111', 'dale', '123', 'dale', '2014-05-17', 0, '2014-05-17', '2014-05-17', '2014-05-17', '0', 1000, '001'),
-('1234', 'jose', '1234', 'jose', '2014-05-17', 10, '2014-05-17', '2014-05-17', '2014-05-17', '0', 1000, '001'),
-('5767', 'admin', 'admin', 'jose', '2014-05-16', 13, '2014-05-16', '2014-05-16', '2014-05-16', '0', 100, '001');
+('5767', 'admin', 'admin', 'Administrator', '2014-05-16', 13, '2014-05-16', '2014-05-16', '2014-05-16', '0', 100, '001');
 
 -- --------------------------------------------------------
 
@@ -126,13 +124,13 @@ INSERT INTO `usuario` (`usu_id_PK`, `usu_username`, `usu_password`, `usu_nombre`
 --
 
 CREATE TABLE IF NOT EXISTS `vitacora` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `vit_id` int(11) NOT NULL DEFAULT '0',
   `usu_id_PK_FK` varchar(6) NOT NULL COMMENT 'Id del usuario',
   `vit_codigo` varchar(3) NOT NULL COMMENT 'Código abreviado de la acción del  usuario. Más adelante se listan los  códigos a utilizar. ',
   `vit_nemonic` varchar(10) NOT NULL COMMENT 'Abreviación de la acción del usuario. ',
   `vit_accion` varchar(30) NOT NULL COMMENT 'Una descripción del proceso que hizo  el usuario. También se va a incluir una  lista',
   `vit_fecha` date NOT NULL COMMENT 'fecha',
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`vit_id`),
   KEY `usu_id_PK_FK` (`usu_id_PK_FK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='tabla de vitacora';
 
