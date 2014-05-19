@@ -6,7 +6,7 @@ class Home extends Controller {
 		$data = [];
 		$user = new User();
 		if ($user->isLoggedIn()) {
-			Redirect::to('users/index');
+			Redirect::to('menu/index');
 		}
 
 		if (Input::exists()) {
@@ -24,7 +24,7 @@ class Home extends Controller {
 				$user = new User();
 				$login = $user->login(Input::get('usu_username'), Input::get('password'));
 				if ($login) {
-					Redirect::to('users/index');
+					Redirect::to('menu/index');
 					Session::flash('success', "You've logged in successfully!");					
 				} else {
 					Session::flash('incorrect', "Username and/or password is incorrect.");										

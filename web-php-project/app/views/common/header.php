@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo Config::get('SITE_URL') ?>home/index">Security Administration Management System</a>
+      <a class="navbar-brand" href="<?php echo Config::get('SITE_URL') ?>menu/index">Security Administration Management System</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
