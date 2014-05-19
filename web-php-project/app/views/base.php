@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta viewport="">
     <title>SAMS | <?php startblock('title') ?><?php endblock() ?></title>
-    <link rel="stylesheet" href="../../public/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/static/css/app.css">
+    <link rel="stylesheet" href="<?php echo Config::get('SITE_URL') ?>static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo Config::get('SITE_URL') ?>static/css/app.css">
     <?php startblock('extra_css') ?>
     <?php endblock() ?>
 </head>
@@ -19,9 +19,9 @@
     <footer>
         <?php include 'common/footer.php'; ?>
     </footer>
-    <script src="../../public/static/js/jquery.js"></script>    
-    <script src="../../public/static/js/bootstrap.min.js"></script>
-    <script src="../../public/static/js/app.js"></script>
+    <script src="<?php echo Config::get('SITE_URL') ?>static/js/jquery.js"></script>    
+    <script src="<?php echo Config::get('SITE_URL') ?>static/js/bootstrap.min.js"></script>
+    <script src="<?php echo Config::get('SITE_URL') ?>static/js/app.js"></script>
     <?php startblock('extra_js') ?>
     <?php endblock() ?>
 </body>

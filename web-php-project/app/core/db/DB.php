@@ -68,7 +68,7 @@ class DB {
 		} else if ( count($where) === 0 ) {
 			$sql = "{$action} FROM {$table}";
 			if (!$this->query($sql)->error()) {
-					return $this;
+				return $this;
 			}
 		}
 		return false;
@@ -99,7 +99,7 @@ class DB {
 
 			$sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`)".
 				   " VALUES ({$values})";
-			if ($this->query($sql, $fields)->error()) {
+			if (!$this->query($sql, $fields)->error()) {
 				return true;
 			}
 			return false;
@@ -118,9 +118,8 @@ class DB {
 			$x++;
 		}
 
-		$sql = "UPDATE {$table} SET {$set} WHERE {$id_fieldname} = {$id}";
-
-		if ($this->query($sql, $fields)->error()) {
+		$sql = "UPDATE {$table} SET {$set} WHERE {$id_fieldname} = '{$id}'";
+		if (!$this->query($sql, $fields)->error()) {
 			return true;
 		}
 		return false;

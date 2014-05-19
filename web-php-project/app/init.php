@@ -23,6 +23,8 @@ require_once '../app/core/db/DB.php';
 require_once '../app/core/utils/Sanitize.php';
 require_once '../app/core/validators/Validation.php';
 
+require_once '../app/models/User.php';
+
 require_once 'core/App.php';
 require_once 'core/Controller.php';
 

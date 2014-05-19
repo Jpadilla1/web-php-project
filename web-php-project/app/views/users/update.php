@@ -4,8 +4,7 @@
 <div class="container">
    <div class="page-header">
         <center>
-            <h1>Create a New User</h1>
-            <h4>Please fill out the form</h4>
+            <h1>Updating user: <?= $data['user']->usu_username; ?></h1>
         </center>
     </div>
 </div>
@@ -22,31 +21,21 @@
     ?>
     <form role="form" action="" method="post">
        <div class="form-group">
-            <label for="user-id">User ID</label>
-            <input type="text" class="form-control" value="<?php echo escape(Input::get('usu_id_PK')); ?>" name="usu_id_PK" id="user-id" placeholder="User ID">
+        	<p class="lead">User ID: <?= $data['user']->usu_id_PK; ?></p>
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" value="<?php echo escape(Input::get('usu_username')); ?>" name="usu_username" id="username" placeholder="Username">
+        	<p class="lead">Username: <?= $data['user']->usu_username; ?></p>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" value="<?php echo escape(Input::get('name')); ?>" name="name" id="name" placeholder="Name">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label for="verify-password">Password (again)</label>                    
-            <input type="password" class="form-control" name="password_again" id="verify-password" placeholder="Password(again)">
+            <input type="text" class="form-control" value="<?= $data['user']->usu_nombre; ?>" name="name" id="name" placeholder="Name">
         </div>
         <div class="form-group">
             <label for="account-type">Account Type</label>
             <select name="cat_id_FK" id="cat_id_FK" class="form-control">
                 <?php 
                     foreach ($data['categorias'] as $key => $value) {
-                        if (Input::get('cat_id_FK') === $value->cat_id_PK) {
+                        if ($data['user']->cat_id_FK === $value->cat_id_PK) {
                             echo "<option value='{$value->cat_id_PK}' selected='selected'>{$value->cat_titulo}</option>";
                         } else {
                             echo "<option value='{$value->cat_id_PK}'>{$value->cat_titulo}</option>";
@@ -58,8 +47,9 @@
         </br>
         <center>
             <div class="form-group" id="button">
-                <button type="submit" class="btn btn-lg btn-success">Create</button>
-                <button type="reset" class="btn btn-lg btn-danger">Reset</button>
+                <button type="submit" class="btn btn-lg btn-success">Update</button>
+                <a href="<?php echo Config::get('SITE_URL') ?>users/delete/ <?= $data['user']->usu_username; ?>" 
+                    class="btn btn-lg btn-danger">Delete</a>
             </div>
         </center>
     </form>

@@ -4,12 +4,16 @@ class Home extends Controller {
 	
 	public function index($name = '') {
 		$data = [];
+		$user = new User();
+		if ($user->isLoggedIn()) {
+			Redirect::to('users/index');
+		}
+
 		if (Input::exists()) {
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
 				'usu_username' => array(
 					'required' => true,
-					'max' => 20,
 				),
 				'password' => array(
 					'required' => true,
@@ -17,8 +21,10 @@ class Home extends Controller {
 			));
 
 			if ($validation->passed()) {
-				$user = DB::getInstance()->get('usuario', array('usu_username', '=', $_POST['usu_username']));
-				if ($user->results() && $user->results()[0]->usu_password === $_POST['password']) {
+				$user = new User();
+				$login = $user->login(Input::get('usu_username'), Input::get('password'));
+				if ($login) {
+					Redirect::to('users/index');
 					Session::flash('success', "You've logged in successfully!");					
 				} else {
 					Session::flash('incorrect', "Username and/or password is incorrect.");										
@@ -31,11 +37,11 @@ class Home extends Controller {
 		$this->view('home/index', $data);
 	}
 
-	public function form($fields = array()) {
-		
-		$this->view('home/login');
+	public function logout() {
+		$user = new User();
+		$user->logout();
+		Redirect::to('home/index');
 	}
-
 }
 
 ?>

@@ -15,6 +15,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#">About</a></li>
+        <?php 
+          $user = new User();
+          if ($user->isLoggedIn()) {
+            echo "<li><a href='". Config::get('SITE_URL') . "home/logout'>Log out</a></li>";
+          }
+        ?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><?php echo date('m/d/Y') ?></a></li>

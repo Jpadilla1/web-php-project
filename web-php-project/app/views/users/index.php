@@ -8,10 +8,10 @@
     <a href="<?php echo Config::get('SITE_URL') ?>users/create" class="btn btn-default">Add User</a>
     <br><br>
     <?php 
-      if (Session::exists('user_created')) {
+      if (Session::exists('users')) {
         echo "<div class='alert alert-success alert-dismissable'>
             <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-            <strong>" . Session::flash('user_created') ."</strong>
+            <strong>" . Session::flash('users') ."</strong>
           </div>";
       }
     ?>
@@ -26,44 +26,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td><a href="#">@mdo</a></td>
-          <td>Mark</td>
-          <td>today</td>
-          <td>today</td>
-        </tr>
-        <tr>
-         <td>1</td>
-          <td><a href="#">@mdo</a></td>
-          <td>Mark</td>
-          <td>today</td>
-          <td>today</td>
-        </tr>
-        <tr>
-         <td>1</td>
-          <td><a href="#">@mdo</a></td>
-          <td>Mark</td>
-          <td>today</td>
-          <td>today</td>
-        </tr>
-        <tr>
-         <td>1</td>
-          <td><a href="#">@mdo</a></td>
-          <td>Mark</td>
-          <td>today</td>
-          <td>today</td>
-        </tr>
+        <?php 
+          foreach ($data['users'] as $user => $value) {
+            echo  "<tr>".
+                     "<td>{$value->usu_id_PK}</td>".
+                     "<td><a href='" . Config::get('SITE_URL') . "users/update/" . 
+                     $value->usu_username . "'>{$value->usu_username}</a></td>".
+                     "<td>{$value->usu_nombre}</td>".
+                     "<td>{$value->usu_last_login}</td>".
+                     "<td>{$value->usu_fecha_creacion}</td>".
+                  "</tr>";
+          }
+        ?>
       </tbody>
     </table>
-    <ul class="pagination">
-      <li class="disabled"><a href="#">«</a></li>
-      <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">»</a></li>
-   </ul>
 </div>
 <?php endblock() ?>
