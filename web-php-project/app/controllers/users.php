@@ -117,6 +117,39 @@ class Users extends Controller {
 		Redirect::to('users/index');
 	}
 
+	public function change_password($username) {
+		$user = new User();
+		if ($user->isLoggedIn() && $username) {
+			if (Input::exists()) {
+				$validate = new Validate();
+				$validation = $validate->check($_POST, array(
+					'password_new' => array(
+						'required' => true,
+					),
+					'password_new_again' => array(
+						'required' => true,
+						'matches' => 'password_new'
+					),
+				));
+				if ($validation->passed()) {
+					try {
+						$user->update(array(
+							'usu_password' => Input::get('password_new'),
+							), $username);
+					} catch (Exception $e) {
+						die($e->getMessage());
+				}
+				Session::flash('users', "Password for user ". $username ." was updated successfully!");
+				Redirect::to('users/index');
+			} else {
+				$data['form_errors'] = $validation->errors(); 
+			}
+		}
+		$data['user'] = $username;
+		$this->view('users/change_password', $data); 
+	} else {
+			Redirect::to('users/index');
+		}
+	}
 }
-
 ?>

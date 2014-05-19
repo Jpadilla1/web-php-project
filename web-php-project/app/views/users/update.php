@@ -48,8 +48,10 @@
         <center>
             <div class="form-group" id="button">
                 <button type="submit" class="btn btn-lg btn-success">Update</button>
-                <a href="<?php echo Config::get('SITE_URL') ?>users/delete/ <?= $data['user']->usu_username; ?>" 
+                <a href="<?php echo Config::get('SITE_URL') ?>users/delete/<?= $data['user']->usu_username; ?>" 
                     class="btn btn-lg btn-danger">Delete</a>
+                <a href="<?php echo Config::get('SITE_URL') ?>users/change_password/<?= $data['user']->usu_username; ?>" 
+                    class="btn btn-lg btn-warning">Change password</a>
             </div>
         </center>
     </form>
