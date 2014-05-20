@@ -32,7 +32,7 @@ endblock() ?>
     </div>
     <div class="col-sm-6">
         <center>  
-            <a href="#">  
+            <a href="<?php echo Config::get('SITE_URL') ?>categories/index">  
                 <img src="<?php echo Config::get('SITE_URL') ?>static/img/list.jpg" class="img-responsive" alt="">
             </a>
         </center>

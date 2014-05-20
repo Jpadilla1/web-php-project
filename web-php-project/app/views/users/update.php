@@ -1,5 +1,5 @@
 <?php include '../app/views/base.php'; ?>
-<?php startblock('title') ?>Create user<?php endblock() ?>
+<?php startblock('title') ?>Update user<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container">
    <div class="page-header">

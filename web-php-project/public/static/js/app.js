@@ -9,6 +9,13 @@ $(document).ready(function() {
        },
 	});
 
+    $('#categories_table').dataTable({
+        "oLanguage": {
+         "sSearch": "",
+         "sLengthMenu" :"_MENU_"
+       },
+    });
+
 	$('div.dataTables_length').addClass('form-inline');
     $('div.dataTables_length select').addClass('form-control');
     $('div.dataTables_length select').addClass('select-wd');
@@ -23,4 +30,5 @@ $(document).ready(function() {
     $('div.dataTables_filter').after("<br><br>");
     $('div.dataTables_filter').addClass("left-inner-addon col-md-4 pull-right");
     $('#users_table').addClass('clearfix');
+    $('#categories_table').addClass('clearfix');
 });

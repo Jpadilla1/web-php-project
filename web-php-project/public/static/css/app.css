@@ -1,6 +1,9 @@
 body {
     background-color:  #f9f8f4;
 }
+.navbar {
+	margin-bottom: 0;
+}
 .btn-margin {
     margin: 0 2px;
 }

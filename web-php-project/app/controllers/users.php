@@ -121,6 +121,7 @@ class Users extends Controller {
 				die($e->getMessage());
 			}
 			Session::flash('users', "User was deleted successfully!");
+			Redirect::to('users/index');
 		}
 		Redirect::to('home/index');
 	}
