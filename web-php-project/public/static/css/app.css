@@ -1,3 +1,21 @@
 body {
     background-color:  #f9f8f4;
 }
+.btn-margin {
+    margin: 0 2px;
+}
+.select-wd {
+    width: 80px;
+}
+.left-inner-addon {
+    position: relative;
+    padding-right: 0;
+}
+.left-inner-addon input {
+    padding-left: 30px;
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}

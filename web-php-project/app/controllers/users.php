@@ -4,7 +4,7 @@ class Users extends Controller {
 	
 	public function index() {
 		$user = new User();
-		if ($user->isLoggedIn()) {
+		if ($user->isLoggedIn() && !$user->hasPermission('normal')) {
 			$data = ['users' => DB::getInstance()->get('usuario')->results()];
 			$this->view('users/index', $data);
 		} else {
@@ -14,7 +14,7 @@ class Users extends Controller {
 
 	public function create() {
 		$user = new User();
-		if ($user->isLoggedIn()) {
+		if ($user->isLoggedIn() && !$user->hasPermission('normal')) {
 			$data = ['categorias' => DB::getInstance()->get('categoria')->results()];
 			if (Input::exists()) {
 				$validate = new Validate();
@@ -73,13 +73,13 @@ class Users extends Controller {
 
 			$this->view('users/create', $data);
 		} else {
-
+			Redirect::to('home/index');			
 		}
 	}
 
 	public function update($username) {
 		$user = new User();
-		if ($user->isLoggedIn() && $username) {
+		if ($user->isLoggedIn() && !$user->hasPermission('normal') && $username) {
 			$data = ['categorias' => DB::getInstance()->get('categoria')->results(),
 					 'user' => DB::getInstance()->get('usuario', array('usu_username', '=', $username))->first()];
 			if (Input::exists()) {
@@ -114,7 +114,7 @@ class Users extends Controller {
 
 	public function delete($username) {
 		$user = new User();
-		if ($user->isLoggedIn() && $username) {
+		if ($user->isLoggedIn() && !$user->hasPermission('normal') && $username) {
 			try {
 				$user->delete($username);
 			} catch (Exception $e) {
@@ -127,7 +127,7 @@ class Users extends Controller {
 
 	public function change_password($username) {
 		$user = new User();
-		if ($user->isLoggedIn() && $username) {
+		if ($user->isLoggedIn() && !$user->hasPermission('normal') && $username) {
 			if (Input::exists()) {
 				$validate = new Validate();
 				$validation = $validate->check($_POST, array(

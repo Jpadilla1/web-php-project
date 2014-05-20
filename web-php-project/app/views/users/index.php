@@ -15,8 +15,8 @@
           </div>";
       }
     ?>
-    <table class="table table-responsive table-striped table-bordered">
-        <thead>
+    <table id="users_table" class="table table-responsive table-striped table-bordered">
+      <thead>
         <tr>
           <th>ID</th>
           <th>Username</th>

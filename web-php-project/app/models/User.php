@@ -67,6 +67,38 @@ class User {
 		return false;
 	}
 
+	public function hasPermission($str) {
+		$category = DB::getInstance()->get('categoria',
+			array('cat_id_PK', '=', $this->data()->cat_id_FK));
+		
+		if ($category->count()) {
+			$category_title = strtolower($category->first()->cat_titulo);
+			switch ($str) {
+				case 'normal':
+						if ('normal' === $category_title) {
+							return true;
+						}
+						return false;
+					break;
+				case 'admin':
+						if ('admin' === $category_title) {
+							return true;
+						}
+						return false;
+					break;
+				case 'superuser':
+						if ('superuser' === $category_title) {
+							return true;
+						}
+						return false;
+					break;
+				default:
+					return false;
+			}
+		}
+		return false;
+	}
+
 	public function logout() {
 		Session::delete(($this->_sessionName));
 	}

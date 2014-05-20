@@ -7,8 +7,13 @@ endblock() ?>
 
 <?php startblock('content') ?>
 <div class="container">
+    <?php 
+        $user = new User();
+        $permission = $user->hasPermission('normal');
+     ?>
     <h1 class="text-center">University of Puerto Rico at Bayamon</h1>
     <br>
+    <?php if (!$permission) { ?>
     <div class="col-sm-6">
         <center>   
             <a href="<?php echo Config::get('SITE_URL') ?>users/index">
@@ -27,15 +32,16 @@ endblock() ?>
     </div>
     <div class="col-sm-6">
         <center>  
-            <a href="">  
+            <a href="#">  
                 <img src="<?php echo Config::get('SITE_URL') ?>static/img/list.jpg" class="img-responsive" alt="">
             </a>
         </center>
         <h3 class="text-center">Manage Categories</h3>
     </div>
+    <?php } ?>
     <div class="col-sm-6">
         <center>    
-            <a href="">
+            <a href="#">
                 <img src="<?php echo Config::get('SITE_URL') ?>static/img/reports.jpg" class="img-responsive" alt="">
             </a>
         </center>
