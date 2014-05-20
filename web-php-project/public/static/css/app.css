@@ -22,3 +22,13 @@ body {
     padding: 10px 12px;
     pointer-events: none;
 }
+ul {
+    padding: 0;
+}
+li {
+    padding-left: 25px;
+    list-style: none;
+}
+.text-b {
+    font-size: 20px;
+}

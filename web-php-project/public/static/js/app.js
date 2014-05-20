@@ -15,6 +15,12 @@ $(document).ready(function() {
          "sLengthMenu" :"_MENU_"
        },
     });
+    $('#systems_table').dataTable({
+        "oLanguage": {
+         "sSearch": "",
+         "sLengthMenu" :"_MENU_"
+       },
+    });
 
 	$('div.dataTables_length').addClass('form-inline');
     $('div.dataTables_length select').addClass('form-control');
@@ -31,4 +37,5 @@ $(document).ready(function() {
     $('div.dataTables_filter').addClass("left-inner-addon col-md-4 pull-right");
     $('#users_table').addClass('clearfix');
     $('#categories_table').addClass('clearfix');
+    $('#systems_table').addClass('clearfix');
 });

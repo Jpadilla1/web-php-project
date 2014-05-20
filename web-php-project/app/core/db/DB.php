@@ -65,6 +65,24 @@ class DB {
 					return $this;
 				}
 			}
+		} else if (count($where) === 6) {
+			$operators = array('=', '>', '<', '>=', '<=');
+
+			$field1 	  = $where[0];
+			$operator1    = $where[1];
+			$value1 	  = $where[2];
+
+			$field2 	  = $where[3];
+			$operator2    = $where[4];
+			$value2 	  = $where[5];
+
+			if(in_array($operator, $operators)) {
+				$sql = "{$action} FROM {$table} WHERE {$field1} {$operator1} ? AND {$field2} {$operator2} ?"; // die($sql);
+				if (!$this->query($sql, array($value1, $value2))->error()) {
+					return $this;
+				}
+			}
+
 		} else if ( count($where) === 0 ) {
 			$sql = "{$action} FROM {$table}";
 			if (!$this->query($sql)->error()) {

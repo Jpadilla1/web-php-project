@@ -24,7 +24,7 @@ endblock() ?>
     </div>
     <div class="col-sm-6">
         <center>    
-            <a href="#">
+            <a href="<?php echo Config::get('SITE_URL') ?>systems/index">
                 <img src="<?php echo Config::get('SITE_URL') ?>static/img/systems.jpg" class="img-responsive" alt="">
             </a>
         </center>

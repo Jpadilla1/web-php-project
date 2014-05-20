@@ -38,9 +38,20 @@ class User {
 	}
 
 	public function delete($username) {
+		// $this->_db->delete('asignado', array('usu_id_PK', '=', $value->usu_id_PK));				
 		if (!$this->_db->delete('usuario', array('usu_username', '=', $username))) {
 			throw new Exception ('There was a problem deleting the account.');
 		}
+	}
+
+	public function delete_all_with_category($id) {
+		$users = $this->_db->get('usuario', array('cat_id_FK', '=', $id))->results();
+		foreach ($users as $key => $value) {
+			$this->_db->delete('asignado', array('usu_id_PK', '=', $value->usu_id_PK));				
+		}		
+		if (!$this->_db->delete('usuario', array('cat_id_FK', '=', $id))) {
+			throw new Exception ('There was a problem deleting the account.');
+		}	
 	}
 
 	public function find($user = null) {
