@@ -151,6 +151,7 @@ class Users extends Controller {
 					try {
 						$user->update(array(
 							'usu_password' => Input::get('password_new'),
+							'usu_fecha_cambio_password' => date('Y-m-d')
 							), $username);
 						$user_id = new User($username);
 						$log = $this->model('Log');
