@@ -61,6 +61,13 @@ class Users extends Controller {
 							'usu_cantidad_dias_password' => '',
 							'cat_id_FK' => Input::get('cat_id_FK')
 							));
+						$log = $this->model('Log');
+						$log->create(array(
+							'usu_id_PK_FK' => $user->data()->usu_id_PK,
+							'vit_codigo' => 'ACR',
+							'vit_nemonic' => 'Account Created',
+							'vit_accion' => 'Se creo una cuenta de usuario.',
+							'vit_fecha' => date('Y-m-d')));
 						Session::flash('users', "User was created successfully!");
 					} catch (Exception $e) {
 						die($e->getMessage());
@@ -145,6 +152,14 @@ class Users extends Controller {
 						$user->update(array(
 							'usu_password' => Input::get('password_new'),
 							), $username);
+						$user_id = new User($username);
+						$log = $this->model('Log');
+						$log->create(array(
+							'usu_id_PK_FK' => $user_id->data()->usu_id_PK,
+							'vit_codigo' => 'CHP',
+							'vit_nemonic' => 'Password Change',
+							'vit_accion' => 'El usuario cambio la clave.',
+							'vit_fecha' => date('Y-m-d')));
 					} catch (Exception $e) {
 						die($e->getMessage());
 				}

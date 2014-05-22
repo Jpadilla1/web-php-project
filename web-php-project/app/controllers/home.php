@@ -24,9 +24,27 @@ class Home extends Controller {
 				$user = new User();
 				$login = $user->login(Input::get('usu_username'), Input::get('password'));
 				if ($login) {
+					$user_id = new User(Input::get('usu_username'));
+					$log = $this->model('Log');
+					$log->create(array(
+						'usu_id_PK_FK' => $user_id->data()->usu_id_PK,
+						'vit_codigo' => 'LOI',
+						'vit_nemonic' => 'Login In',
+						'vit_accion' => 'El usuario entro al sistema.',
+						'vit_fecha' => date('Y-m-d')));
 					Redirect::to('menu/index');
 					Session::flash('success', "You've logged in successfully!");					
 				} else {
+					$user_id = new User(Input::get('usu_username'));
+					if ($user_id->data()->usu_id_PK) {
+						$log = $this->model('Log');
+						$log->create(array(
+							'usu_id_PK_FK' => $user_id->data()->usu_id_PK,
+							'vit_codigo' => 'FAI',
+							'vit_nemonic' => 'Failed Access',
+							'vit_accion' => 'Se inteno entrar a una cuenta.',
+							'vit_fecha' => date('Y-m-d')));
+					}
 					Session::flash('incorrect', "Username and/or password is incorrect.");										
 				}
 			} else {
@@ -39,6 +57,13 @@ class Home extends Controller {
 
 	public function logout() {
 		$user = new User();
+		$log = $this->model('Log');
+		$log->create(array(
+			'usu_id_PK_FK' => $user->data()->usu_id_PK,
+			'vit_codigo' => 'LOO',
+			'vit_nemonic' => 'Login Out',
+			'vit_accion' => 'El usuario salio del sistema.',
+			'vit_fecha' => date('Y-m-d')));
 		$user->logout();
 		Redirect::to('home/index');
 	}
