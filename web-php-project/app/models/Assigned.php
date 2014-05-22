@@ -9,6 +9,13 @@ class Assigned {
 		$this->_db = DB::getInstance();
 	}
 
+	public function exists($usu_id, $sis_id) {
+		if ($this->_db->get('asignado', array('sis_id_PK', '=', $sis_id, 'usu_id_PK', '=', $usu_id))->count() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 	public function create($fields = array()) {
 		if (!$this->_db->insert('asignado', $fields)) {
 			throw new Exception ('There was a problem assigning a system.');

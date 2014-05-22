@@ -1,11 +1,11 @@
 <?php include '../app/views/base.php'; ?>
-<?php startblock('title') ?>Change password<?php endblock() ?>
-<?php startblock('page_id') ?>USE004<?php endblock() ?>
+<?php startblock('title') ?>Remove user from a system<?php endblock() ?>
+<?php startblock('page_id') ?>USE006<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container">
    <div class="page-header">
         <center>
-            <h1>Change password for user: <?=$data['user']?></h1>
+            <h1>Remove user from a system</h1>
         </center>
     </div>
 </div>
@@ -22,17 +22,20 @@
     ?>
     <form role="form" action="" method="post">
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password_new" id="password" placeholder="Password">
+            <p class="lead">Username: <?=$data['user']->usu_username?></p>
         </div>
         <div class="form-group">
-            <label for="verify-password">Password (again)</label>                    
-            <input type="password" class="form-control" name="password_new_again" id="verify-password" placeholder="Password(again)">
+            <label for="selected_system">Select a system:</label>
+            <select class="form-control" name="selected_system" id="selected_system">
+                <?php foreach ($data['systems'] as $key => $value) {
+                    echo "<option value='{$value->sis_id_PK}'>{$value->sis_titulo}</option>";
+                } ?>
+            </select>
         </div>
         </br>
         <center>
             <div class="form-group" id="button">
-                <button type="submit" class="btn btn-lg btn-success">Change</button>
+                <button type="submit" class="btn btn-lg btn-danger">Remove</button>
             </div>
         </center>
     </form>

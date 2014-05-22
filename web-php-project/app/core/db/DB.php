@@ -75,8 +75,7 @@ class DB {
 			$field2 	  = $where[3];
 			$operator2    = $where[4];
 			$value2 	  = $where[5];
-
-			if(in_array($operator, $operators)) {
+			if(in_array($operator1, $operators) and in_array($operator2, $operators)) {
 				$sql = "{$action} FROM {$table} WHERE {$field1} {$operator1} ? AND {$field2} {$operator2} ?"; // die($sql);
 				if (!$this->query($sql, array($value1, $value2))->error()) {
 					return $this;

@@ -160,5 +160,67 @@ class Users extends Controller {
 			Redirect::to('home/index');
 		}
 	}
+
+	public function assign_to_system() {
+		$user = new User();
+		if ($user->isLoggedIn() && !$user->hasPermission('normal')) {
+				if (Input::exists()) {
+					$assigned = $this->model('Assigned');
+					if (!$assigned->exists(Input::get('selected_user'), Input::get('selected_system'))) {
+
+						try {
+							$assigned->create(array(
+								'usu_id_PK' => Input::get('selected_user'),
+								'sis_id_PK' => Input::get('selected_system'),
+								));
+						} catch (Exception $e) {
+							die($e->getMessage());
+						}
+						Session::flash('users', "User was assigned to the system successfully!");
+						Redirect::to('users/index');
+					} else {
+						Session::flash('users_warning', "User has already been assigned to the system!");
+						Redirect::to('users/index');
+					}
+				}
+			$data = ['users' => DB::getInstance()->get('usuario')->results(),
+					 'systems' => DB::getInstance()->get('sistema')->results()];
+			$this->view('users/assign_to_system', $data); 
+		} else {
+				Redirect::to('home/index');
+		}
+	}
+
+	public function remove_from_system($username) {
+		$user = new User();
+		if ($user->isLoggedIn() && !$user->hasPermission('normal')) {
+				$selected_user = new User($username);
+				if (Input::exists()) {
+					$assigned = $this->model('Assigned');
+					if ($assigned->exists($selected_user->data()->usu_id_PK, Input::get('selected_system'))) {
+						try {
+							$assigned->delete($selected_user->data()->usu_id_PK, Input::get('selected_system'));
+						} catch (Exception $e) {
+							die($e->getMessage());
+						}
+						Session::flash('users', "Unassigned the user from the system successfully!");
+						Redirect::to('users/index');
+					} else {
+						Session::flash('users_warning', "User has not been assigned to this system.");
+						Redirect::to('users/index');
+					}
+				}
+			$data = ['user' => $selected_user->data()];
+			$assigned_systems_ids = DB::getInstance()->get('asignado', array('usu_id_PK', '=', $data['user']->usu_id_PK));
+			$assigned_systems = [];
+			foreach ($assigned_systems_ids->results() as $key => $value) {
+				$assigned_systems[] = DB::getInstance()->get('sistema', array('sis_id_PK', '=', $value->sis_id_PK))->first();
+			}
+			$data['systems'] = $assigned_systems;
+			$this->view('users/remove_from_system', $data); 
+		} else {
+				Redirect::to('home/index');
+		}
+	}
 }
 ?>

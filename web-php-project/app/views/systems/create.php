@@ -1,5 +1,6 @@
 <?php include '../app/views/base.php'; ?>
 <?php startblock('title') ?>Create system<?php endblock() ?>
+<?php startblock('page_id') ?>SIS002<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container">
    <div class="page-header">

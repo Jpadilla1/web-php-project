@@ -5,6 +5,8 @@ include '../app/views/base.php'; ?>
 startblock('title') ?>Menu<?php
 endblock() ?>
 
+<?php startblock('page_id') ?>MEN001<?php endblock() ?>
+    
 <?php startblock('content') ?>
 <div class="container">
     <?php 

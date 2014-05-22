@@ -1,5 +1,6 @@
 <?php include '../app/views/base.php'; ?>
 <?php startblock('title') ?>Update user<?php endblock() ?>
+<?php startblock('page_id') ?>USE003<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container">
    <div class="page-header">
@@ -52,6 +53,8 @@
                     class="btn btn-lg btn-danger">Delete</a>
                 <a href="<?php echo Config::get('SITE_URL') ?>users/change_password/<?= $data['user']->usu_username; ?>" 
                     class="btn btn-lg btn-warning">Change password</a>
+                <a href="<?php echo Config::get('SITE_URL') ?>users/remove_from_system/<?= $data['user']->usu_username; ?>" 
+                    class="btn btn-lg btn-danger">Remove user from a system</a>
             </div>
         </center>
     </form>

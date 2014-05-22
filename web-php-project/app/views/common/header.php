@@ -14,7 +14,6 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">About</a></li>
         <?php 
           $user = new User();
           if ($user->isLoggedIn()) {

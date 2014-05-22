@@ -15,6 +15,10 @@
     <header>
         <?php include 'common/header.php'; ?>
     </header>
+    <div id="page_id" class="container">
+    <?php startblock('page_id') ?>
+    <?php endblock() ?>    
+    </div>
     <?php startblock('content') ?>
     <?php endblock() ?>
     <footer>

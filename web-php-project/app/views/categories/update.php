@@ -1,5 +1,6 @@
 <?php include '../app/views/base.php'; ?>
 <?php startblock('title') ?>Update category<?php endblock() ?>
+<?php startblock('page_id') ?>CAT003<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container">
    <div class="page-header">

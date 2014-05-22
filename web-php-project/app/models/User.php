@@ -38,7 +38,8 @@ class User {
 	}
 
 	public function delete($username) {
-		// $this->_db->delete('asignado', array('usu_id_PK', '=', $value->usu_id_PK));				
+		$user_id = DB::getInstance()->get('usuario', array('usu_username', '=', $username))->first()->usu_id_PK;
+		$this->_db->delete('asignado', array('usu_id_PK', '=', $user_id));				
 		if (!$this->_db->delete('usuario', array('usu_username', '=', $username))) {
 			throw new Exception ('There was a problem deleting the account.');
 		}

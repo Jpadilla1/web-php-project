@@ -1,17 +1,25 @@
 <?php include '../app/views/base.php'; ?>
 <?php startblock('title') ?>Users<?php endblock() ?>
+<?php startblock('page_id') ?>USE001<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container clearfix">
     <h1 class="text-center">University of Puerto Rico at Bayamon</h1>
     <h3 class="text-center">User Management</h3>
     <br>
     <a href="<?php echo Config::get('SITE_URL') ?>users/create" class="btn btn-default">Add User</a>
+    <a href="<?php echo Config::get('SITE_URL') ?>users/assign_to_system" class="btn btn-default">Add User to System</a>
     <br><br>
     <?php 
       if (Session::exists('users')) {
         echo "<div class='alert alert-success alert-dismissable'>
             <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
             <strong>" . Session::flash('users') ."</strong>
+          </div>";
+      }
+      if (Session::exists('users_warning')) {
+        echo "<div class='alert alert-warning alert-dismissable'>
+            <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+            <strong>" . Session::flash('users_warning') ."</strong>
           </div>";
       }
     ?>

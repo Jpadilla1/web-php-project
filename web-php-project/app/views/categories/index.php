@@ -1,5 +1,6 @@
 <?php include '../app/views/base.php'; ?>
 <?php startblock('title') ?>Categories<?php endblock() ?>
+<?php startblock('page_id') ?>CAT001<?php endblock() ?>
 <?php startblock('content') ?>
 <div class="container clearfix">
     <h1 class="text-center">University of Puerto Rico at Bayamon</h1>
