@@ -43,7 +43,7 @@ endblock() ?>
     <?php } ?>
     <div class="col-sm-6">
         <center>    
-            <a href="#">
+            <a href="<?php echo Config::get('SITE_URL') ?>reports/index">
                 <img src="<?php echo Config::get('SITE_URL') ?>static/img/reports.jpg" class="img-responsive" alt="">
             </a>
         </center>
